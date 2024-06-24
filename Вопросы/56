@@ -1,0 +1,110 @@
+# 56.  Создание простого меню.
+
+Устно объяснить создание простого меню в Android можно следующим образом:
+
+Создание простого меню в Android можно осуществить через добавление опций в ActionBar или через всплывающее контекстное меню.
+
+1. **Меню в ActionBar**: Для этого необходимо создать XML-файл в папке `res/menu` с определением пунктов меню. Затем интегрировать это меню в Activity через переопределение методов `onCreateOptionsMenu` для загрузки меню и `onOptionsItemSelected` для обработки выбора пунктов.
+2. **Всплывающее контекстное меню**: Это меню появляется при долгом нажатии на элемент интерфейса (например, на TextView) после регистрации его с помощью `registerForContextMenu`. Меню создается программно через переопределение методов `onCreateContextMenu` для определения пунктов меню и `onContextItemSelected` для обработки выбора пунктов.
+
+Оба подхода позволяют добавить интерактивность и функциональность к приложению, предоставляя пользователям возможность выполнения различных действий через меню.
+
+Для создания простого меню в Android можно использовать два основных подхода: создание опций в ActionBar (панели действий) или создание всплывающего контекстного меню. Вот примеры обоих подходов:
+
+### Создание опций в ActionBar (панели действий)
+
+1. **Определение пунктов меню в ресурсах (`res/menu`)**:
+Создайте XML-файл для меню в папке `res/menu` вашего проекта. Например, `menu_main.xml`:
+    
+    ```xml
+    <menu xmlns:android="<http://schemas.android.com/apk/res/android>">
+        <item
+            android:id="@+id/action_settings"
+            android:title="Settings"
+            android:orderInCategory="100"
+            android:showAsAction="never" />
+        <item
+            android:id="@+id/action_about"
+            android:title="About"
+            android:orderInCategory="200"
+            android:showAsAction="never" />
+    </menu>
+    
+    ```
+    
+2. **Интеграция меню в Activity**:
+В методе `onCreateOptionsMenu` вашей Activity добавьте код для загрузки меню:
+    
+    ```java
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    
+    ```
+    
+3. **Обработка выбора пунктов меню**:
+В методе `onOptionsItemSelected` обработайте выбор пунктов меню:
+    
+    ```java
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+    
+        if (id == R.id.action_settings) {
+            // Обработка нажатия на пункт "Settings"
+            return true;
+        } else if (id == R.id.action_about) {
+            // Обработка нажатия на пункт "About"
+            return true;
+        }
+    
+        return super.onOptionsItemSelected(item);
+    }
+    
+    ```
+    
+
+### Создание всплывающего контекстного меню
+
+1. **Определение всплывающего контекстного меню в коде**:
+В методе `onCreate` вашей Activity определите всплывающее меню:
+    
+    ```java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    
+        TextView textView = findViewById(R.id.textView);
+    
+        registerForContextMenu(textView);
+    }
+    
+    ```
+    
+2. **Создание методов для обработки создания меню и выбора элемента**:
+
+```java
+@Override
+public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    super.onCreateContextMenu(menu, v, menuInfo);
+    getMenuInflater().inflate(R.menu.context_menu, menu);
+}
+
+@Override
+public boolean onContextItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case R.id.edit:
+            // Действие при выборе пункта "Edit"
+            return true;
+        case R.id.delete:
+            // Действие при выборе пункта "Delete"
+            return true;
+        default:
+            return super.onContextItemSelected(item);
+    }
+}
+
+```

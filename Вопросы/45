@@ -1,0 +1,175 @@
+# 45.Работа со строками (Java).
+
+### 45. Работа со строками (Java)
+
+Строки в языке Java представляют собой объекты класса `String`. Класс `String` предоставляет множество методов для работы с текстовыми данными, включая создание, модификацию и анализ строк. В отличие от массивов символов, объекты класса `String` являются неизменяемыми (immutable).
+
+### Основные операции со строками
+
+1. **Создание строк**
+    - Строки можно создавать различными способами:
+        
+        ```java
+        String str1 = "Hello, World!";
+        String str2 = new String("Hello, World!");
+        char[] charArray = {'H', 'e', 'l', 'l', 'o'};
+        String str3 = new String(charArray);
+        
+        ```
+        
+2. **Конкатенация строк**
+    - Конкатенация строк осуществляется с помощью оператора `+` или метода `concat`:
+        
+        ```java
+        String str1 = "Hello";
+        String str2 = "World";
+        String str3 = str1 + ", " + str2 + "!";
+        String str4 = str1.concat(", ").concat(str2).concat("!");
+        
+        ```
+        
+3. **Длина строки**
+    - Метод `length()` возвращает длину строки:
+        
+        ```java
+        String str = "Hello, World!";
+        int length = str.length();  // length = 13
+        
+        ```
+        
+4. **Доступ к символам строки**
+    - Метод `charAt(int index)` возвращает символ, находящийся в указанной позиции:
+        
+        ```java
+        char ch = str.charAt(0);  // ch = 'H'
+        
+        ```
+        
+5. **Извлечение подстроки**
+    - Методы `substring(int beginIndex)` и `substring(int beginIndex, int endIndex)` возвращают новую строку, являющуюся подстрокой исходной:
+        
+        ```java
+        String subStr1 = str.substring(7);         // subStr1 = "World!"
+        String subStr2 = str.substring(7, 12);     // subStr2 = "World"
+        
+        ```
+        
+6. **Сравнение строк**
+    - Для сравнения строк используются методы `equals()`, `equalsIgnoreCase()`, `compareTo()`, `compareToIgnoreCase()`:
+        
+        ```java
+        String str1 = "Hello";
+        String str2 = "hello";
+        
+        boolean isEqual = str1.equals(str2);                  // isEqual = false
+        boolean isEqualIgnoreCase = str1.equalsIgnoreCase(str2); // isEqualIgnoreCase = true
+        int comparison = str1.compareTo(str2);                // comparison < 0
+        int comparisonIgnoreCase = str1.compareToIgnoreCase(str2); // comparisonIgnoreCase = 0
+        
+        ```
+        
+7. **Поиск символов и подстрок**
+    - Методы `indexOf()` и `lastIndexOf()` возвращают индекс первого/последнего вхождения символа или подстроки:
+        
+        ```java
+        String str = "Hello, World!";
+        int index1 = str.indexOf('o');         // index1 = 4
+        int index2 = str.indexOf("World");     // index2 = 7
+        int index3 = str.lastIndexOf('o');     // index3 = 8
+        
+        ```
+        
+8. **Проверка начала и конца строки**
+    - Методы `startsWith()` и `endsWith()` проверяют, начинается ли или заканчивается ли строка указанной подстрокой:
+        
+        ```java
+        boolean startsWith = str.startsWith("Hello");  // startsWith = true
+        boolean endsWith = str.endsWith("!");          // endsWith = true
+        
+        ```
+        
+9. **Изменение регистра символов**
+    - Методы `toUpperCase()` и `toLowerCase()` возвращают новую строку, в которой все символы приведены к верхнему или нижнему регистру:
+        
+        ```java
+        String upperStr = str.toUpperCase();  // upperStr = "HELLO, WORLD!"
+        String lowerStr = str.toLowerCase();  // lowerStr = "hello, world!"
+        
+        ```
+        
+10. **Замена символов и подстрок**
+    - Метод `replace()` заменяет все вхождения одного символа или подстроки другим символом или подстрокой:
+        
+        ```java
+        String replacedStr1 = str.replace('o', 'a');         // replacedStr1 = "Hella, Warld!"
+        String replacedStr2 = str.replace("World", "Java");  // replacedStr2 = "Hello, Java!"
+        
+        ```
+        
+11. **Удаление начальных и конечных пробелов**
+    - Метод `trim()` возвращает строку без начальных и конечных пробелов:
+        
+        ```java
+        String strWithSpaces = "   Hello, World!   ";
+        String trimmedStr = strWithSpaces.trim();  // trimmedStr = "Hello, World!"
+        
+        ```
+        
+12. **Разделение строки**
+    - Метод `split()` разбивает строку на массив строк по указанному регулярному выражению:
+        
+        ```java
+        String csv = "apple,banana,orange";
+        String[] fruits = csv.split(",");  // fruits = ["apple", "banana", "orange"]
+        
+        ```
+        
+
+### Пример работы со строками
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+
+        // Длина строки
+        int length = str.length();
+        System.out.println("Length: " + length);
+
+        // Доступ к символам
+        char firstChar = str.charAt(0);
+        System.out.println("First Character: " + firstChar);
+
+        // Извлечение подстроки
+        String subStr = str.substring(7, 12);
+        System.out.println("Substring: " + subStr);
+
+        // Сравнение строк
+        String anotherStr = "hello, world!";
+        boolean isEqual = str.equals(anotherStr);
+        System.out.println("Is Equal: " + isEqual);
+        boolean isEqualIgnoreCase = str.equalsIgnoreCase(anotherStr);
+        System.out.println("Is Equal Ignore Case: " + isEqualIgnoreCase);
+
+        // Поиск подстроки
+        int index = str.indexOf("World");
+        System.out.println("Index of 'World': " + index);
+
+        // Замена подстроки
+        String replacedStr = str.replace("World", "Java");
+        System.out.println("Replaced String: " + replacedStr);
+
+        // Разделение строки
+        String csv = "apple,banana,orange";
+        String[] fruits = csv.split(",");
+        for (String fruit : fruits) {
+            System.out.println("Fruit: " + fruit);
+        }
+    }
+}
+
+```
+
+### Заключение
+
+Класс `String` в Java предоставляет мощный и гибкий набор методов для работы со строками. Строки в Java являются неизменяемыми, что обеспечивает их безопасность и эффективность. Методы класса `String` позволяют выполнять разнообразные операции, такие как создание, конкатенация, сравнение, поиск, замена и разбиение строк, что делает работу с текстовыми данными в Java удобной и эффективной.

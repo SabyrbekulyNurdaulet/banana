@@ -1,0 +1,171 @@
+# 36. Работа с базой SQlite
+
+Работа с базой данных SQLite в Python осуществляется с использованием модуля `sqlite3`, который входит в стандартную библиотеку Python. Этот модуль предоставляет интерфейс для взаимодействия с базой данных SQLite. Ниже приведен пример создания базы данных, добавления данных, выполнения запросов и извлечения данных:
+
+1. **Подключение к базе данных**:
+    
+    ```python
+    pythonКопировать код
+    import sqlite3
+    
+    # Подключение к базе данных (если базы данных не существует, она будет создана)
+    conn = sqlite3.connect('example.db')
+    
+    # Создание объекта курсора
+    cursor = conn.cursor()
+    
+    ```
+    
+2. **Создание таблицы**:
+    
+    ```python
+    pythonКопировать код
+    # Создание таблицы
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            age INTEGER NOT NULL
+        )
+    ''')
+    
+    # Сохранение изменений
+    conn.commit()
+    
+    ```
+    
+3. **Вставка данных**:
+    
+    ```python
+    pythonКопировать код
+    # Вставка данных в таблицу
+    cursor.execute('''
+        INSERT INTO users (name, age) VALUES (?, ?)
+    ''', ('Alice', 30))
+    
+    cursor.execute('''
+        INSERT INTO users (name, age) VALUES (?, ?)
+    ''', ('Bob', 25))
+    
+    # Сохранение изменений
+    conn.commit()
+    
+    ```
+    
+4. **Извлечение данных**:
+    
+    ```python
+    pythonКопировать код
+    # Извлечение данных из таблицы
+    cursor.execute('SELECT * FROM users')
+    rows = cursor.fetchall()
+    
+    for row in rows:
+        print(row)
+    
+    ```
+    
+5. **Обновление данных**:
+    
+    ```python
+    pythonКопировать код
+    # Обновление данных в таблице
+    cursor.execute('''
+        UPDATE users
+        SET age = ?
+        WHERE name = ?
+    ''', (26, 'Bob'))
+    
+    # Сохранение изменений
+    conn.commit()
+    
+    ```
+    
+6. **Удаление данных**:
+    
+    ```python
+    pythonКопировать код
+    # Удаление данных из таблицы
+    cursor.execute('''
+        DELETE FROM users
+        WHERE name = ?
+    ''', ('Alice',))
+    
+    # Сохранение изменений
+    conn.commit()
+    
+    ```
+    
+7. **Закрытие соединения**:
+    
+    ```python
+    pythonКопировать код
+    # Закрытие соединения с базой данных
+    conn.close()
+    
+    ```
+    
+
+Полный пример программы:
+
+```python
+pythonКопировать код
+import sqlite3
+
+# Подключение к базе данных (если базы данных не существует, она будет создана)
+conn = sqlite3.connect('example.db')
+
+# Создание объекта курсора
+cursor = conn.cursor()
+
+# Создание таблицы
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        age INTEGER NOT NULL
+    )
+''')
+
+# Вставка данных в таблицу
+cursor.execute('''
+    INSERT INTO users (name, age) VALUES (?, ?)
+''', ('Alice', 30))
+
+cursor.execute('''
+    INSERT INTO users (name, age) VALUES (?, ?)
+''', ('Bob', 25))
+
+# Сохранение изменений
+conn.commit()
+
+# Извлечение данных из таблицы
+cursor.execute('SELECT * FROM users')
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)
+
+# Обновление данных в таблице
+cursor.execute('''
+    UPDATE users
+    SET age = ?
+    WHERE name = ?
+''', (26, 'Bob'))
+
+# Сохранение изменений
+conn.commit()
+
+# Удаление данных из таблицы
+cursor.execute('''
+    DELETE FROM users
+    WHERE name = ?
+''', ('Alice',))
+
+# Сохранение изменений
+conn.commit()
+
+# Закрытие соединения с базой данных
+conn.close()
+
+```

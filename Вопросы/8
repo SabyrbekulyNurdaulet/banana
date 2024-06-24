@@ -1,0 +1,193 @@
+# 8.  Использование Объектов и классов.
+
+Использование объектов и классов в Python предоставляет мощный и гибкий способ организации кода и работы с данными. Давай рассмотрим несколько примеров использования объектов и классов.
+
+### Пример 1: Создание класса и объекта
+
+```python
+pythonКопировать код
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+# Создание объекта класса Person
+person1 = Person("Alice", 30)
+
+# Использование метода объекта
+person1.greet()  # Вывод: Hello, my name is Alice and I am 30 years old.
+
+```
+
+### Пример 2: Наследование классов
+
+```python
+pythonКопировать код
+class Employee(Person):
+    def __init__(self, name, age, position):
+        super().__init__(name, age)
+        self.position = position
+
+    def info(self):
+        print(f"I am {self.name}, {self.position}")
+
+# Создание объекта класса Employee
+employee1 = Employee("Bob", 25, "Manager")
+
+# Использование методов объекта
+employee1.greet()  # Вывод: Hello, my name is Bob and I am 25 years old.
+employee1.info()   # Вывод: I am Bob, Manager
+
+```
+
+### Пример 3: Полиморфизм
+
+```python
+pythonКопировать код
+def introduce(obj):
+    obj.greet()
+
+# Использование функции с объектами разных классов
+introduce(person1)   # Вывод: Hello, my name is Alice and I am 30 years old.
+introduce(employee1) # Вывод: Hello, my name is Bob and I am 25 years old.
+
+```
+
+### Пример 4: Использование свойств и методов класса
+
+```python
+pythonКопировать код
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+    @classmethod
+    def create(cls, diameter):
+        radius = diameter / 2
+        return cls(radius)
+
+# Создание объекта класса Circle с использованием метода класса
+circle1 = Circle.create(10)
+
+# Использование свойства и метода объекта
+print(circle1.radius)  # Вывод: 5.0
+print(circle1.area())  # Вывод: 78.5
+
+```
+
+### Пример 5: Использование статических методов
+
+```python
+pythonКопировать код
+class MathUtils:
+    @staticmethod
+    def add(x, y):
+        return x + y
+
+# Использование статического метода без создания объекта
+result = MathUtils.add(5, 3)
+print(result)  # Вывод: 8
+
+```
+
+Использование объектов и классов в Python предоставляет мощный и гибкий способ организации кода и работы с данными. Давай рассмотрим несколько примеров использования объектов и классов.
+
+### Пример 1: Создание класса и объекта
+
+```python
+pythonКопировать код
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+# Создание объекта класса Person
+person1 = Person("Alice", 30)
+
+# Использование метода объекта
+person1.greet()  # Вывод: Hello, my name is Alice and I am 30 years old.
+
+```
+
+### Пример 2: Наследование классов
+
+```python
+pythonКопировать код
+class Employee(Person):
+    def __init__(self, name, age, position):
+        super().__init__(name, age)
+        self.position = position
+
+    def info(self):
+        print(f"I am {self.name}, {self.position}")
+
+# Создание объекта класса Employee
+employee1 = Employee("Bob", 25, "Manager")
+
+# Использование методов объекта
+employee1.greet()  # Вывод: Hello, my name is Bob and I am 25 years old.
+employee1.info()   # Вывод: I am Bob, Manager
+
+```
+
+### Пример 3: Полиморфизм
+
+```python
+pythonКопировать код
+def introduce(obj):
+    obj.greet()
+
+# Использование функции с объектами разных классов
+introduce(person1)   # Вывод: Hello, my name is Alice and I am 30 years old.
+introduce(employee1) # Вывод: Hello, my name is Bob and I am 25 years old.
+
+```
+
+### Пример 4: Использование свойств и методов класса
+
+```python
+pythonКопировать код
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+    @classmethod
+    def create(cls, diameter):
+        radius = diameter / 2
+        return cls(radius)
+
+# Создание объекта класса Circle с использованием метода класса
+circle1 = Circle.create(10)
+
+# Использование свойства и метода объекта
+print(circle1.radius)  # Вывод: 5.0
+print(circle1.area())  # Вывод: 78.5
+
+```
+
+### Пример 5: Использование статических методов
+
+```python
+pythonКопировать код
+class MathUtils:
+    @staticmethod
+    def add(x, y):
+        return x + y
+
+# Использование статического метода без создания объекта
+result = MathUtils.add(5, 3)
+print(result)  # Вывод: 8
+
+```
