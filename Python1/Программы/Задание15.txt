@@ -1,0 +1,52 @@
+2.Написать видеоплеер
+
+--avtivity_main.xml--
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
+
+
+--MainActivity.java--
+import android.net.Uri;
+import android.os.Bundle;
+import android.widget.MediaController;
+import android.widget.VideoView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    private VideoView videoView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        videoView = findViewById(R.id.videoView);
+
+        // Укажите путь к видео
+        // Вы можете использовать локальный файл или URL видео
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.video; // если видео в папке res/raw
+        Uri uri = Uri.parse(videoPath);
+
+        // Установка видео URI
+        videoView.setVideoURI(uri);
+
+        // Добавление контроллера воспроизведения
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
+
+        // Запуск видео
+        videoView.start();
+    }
+}

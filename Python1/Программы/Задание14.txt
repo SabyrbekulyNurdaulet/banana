@@ -1,0 +1,56 @@
+1.Создаем кнопки в Android.
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Верхняя кнопка -->
+    <Button
+        android:id="@+id/top_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Верхняя кнопка"
+        android:background="#D3D3D3"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <!-- Левая кнопка -->
+    <Button
+        android:id="@+id/left_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Левая кнопка"
+        android:background="#D3D3D3"
+        android:layout_below="@id/top_button"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+    <!-- Кнопка размером 200x100 dp -->
+    <Button
+        android:id="@+id/fixed_size_button"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="Кнопка размером\n200x100 dp"
+        android:background="#D3D3D3"
+        android:layout_below="@id/left_button"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+    <!-- Большая кнопка -->
+    <Button
+        android:id="@+id/big_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Большая кнопка"
+        android:background="#D3D3D3"
+        android:layout_below="@id/fixed_size_button"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+</RelativeLayout>
